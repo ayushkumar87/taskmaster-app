@@ -66,8 +66,31 @@ A fully functional, production-ready Todo application built with the MERN stack 
 -   Sign up for a new account.
 -   Start managing your tasks!
 
-## Tech Stack
+## Deployment
 
--   **Frontend**: React, Vite, Tailwind CSS, Axios, React Router, Date-fns
--   **Backend**: Node.js, Express, Mongoose, JWT, Bcrypt
--   **Database**: MongoDB
+### GitHub (Code Hosting)
+
+1.  Create a new repository on GitHub (e.g., `taskmaster-app`).
+2.  Push your code:
+    ```bash
+    git remote add origin https://github.com/YOUR_USERNAME/taskmaster-app.git
+    git branch -M main
+    git push -u origin main
+    ```
+
+### Frontend Deployment (Vercel/Netlify)
+
+1.  Push your code to GitHub.
+2.  Import the repository into **Vercel** or **Netlify**.
+3.  Set the **Root Directory** to `client` (or keep default if configuring manually).
+4.  Build command: `npm run build`.
+5.  Output directory: `dist`.
+
+### Backend Deployment (Render/Railway/Heroku)
+
+1.  Push your code to GitHub.
+2.  Import the repository into your hosting provider.
+3.  Set the **Root Directory** to `server`.
+4.  Build command: `npm install`.
+5.  Start command: `npm start` (or `node server.js`).
+6.  **Important:** Add your Environment Variables (`MONGO_URI`, `JWT_SECRET`) in the hosting dashboard.
