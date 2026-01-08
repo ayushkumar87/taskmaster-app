@@ -205,6 +205,19 @@ body {
         box-shadow: var(--shadow-lg);
         border: 1px solid var(--border-color);
         /* Added border for better definition in dark mode */
+        margin: var(--spacing-md);
+    }
+
+    @media (max-width: 480px) {
+        .auth-card {
+            padding: var(--spacing-lg);
+            margin: var(--spacing-sm);
+            width: 95%;
+        }
+
+        .auth-title {
+            font-size: var(--font-size-xl);
+        }
     }
 
     .auth-title {
@@ -768,6 +781,32 @@ body {
     .logout-btn:hover {
         background-color: rgba(239, 68, 68, 0.1);
         color: var(--danger-color);
+    }
+
+    /* Mobile Overlay */
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 95;
+    }
+
+    @media (max-width: 768px) {
+        .dashboard-main {
+            margin-left: 0 !important;
+        }
+
+        .layout-sidebar-open .sidebar {
+            transform: translateX(0);
+        }
+
+        .layout-sidebar-closed .sidebar {
+            transform: translateX(-100%);
+        }
     }
 
     /* Main Content Area */

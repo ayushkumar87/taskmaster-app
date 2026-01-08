@@ -6,16 +6,23 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const { login } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
+        setLoading(true);
         try {
             await login(email, password);
             navigate('/');
         } catch (err) {
-            setError(err.response?.data?.message || 'Login failed');
+            console.error("Login Error:", err);
+            const msg = err.response?.data?.message || 'Login failed. Please check your connection.';
+            setError(msg);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -54,9 +61,10 @@ const Login = () => {
                     <button
                         type="submit"
                         className="btn btn-primary"
+                        disabled={loading}
                         style={{ width: '100%', marginTop: 'var(--spacing-md)', padding: 'var(--spacing-md)' }}
                     >
-                        Sign In
+                        {loading ? 'Signing in...' : 'Sign In'}
                     </button>
                 </form>
                 <div style={{ textAlign: 'center', marginTop: 'var(--spacing-lg)' }}>

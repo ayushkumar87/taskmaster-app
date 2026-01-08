@@ -7,16 +7,23 @@ const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const { signup } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
+        setLoading(true);
         try {
             await signup(name, email, password);
             navigate('/');
         } catch (err) {
-            setError(err.response?.data?.message || 'Signup failed');
+            console.error("Signup Error:", err);
+            const msg = err.response?.data?.message || 'Signup failed. Please try again.';
+            setError(msg);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -66,9 +73,10 @@ const Signup = () => {
                     <button
                         type="submit"
                         className="btn btn-primary"
+                        disabled={loading}
                         style={{ width: '100%', marginTop: 'var(--spacing-md)', padding: 'var(--spacing-md)' }}
                     >
-                        Sign Up
+                        {loading ? 'Creating Account...' : 'Sign Up'}
                     </button>
                 </form>
                 <div style={{ textAlign: 'center', marginTop: 'var(--spacing-lg)' }}>
