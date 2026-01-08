@@ -1,76 +1,64 @@
-# MERN Todo Application
+# TaskMaster - MERN Todo Application
 
 A fully functional, production-ready Todo application built with the MERN stack (MongoDB, Express, React, Node.js).
+**Recently updated with Real-time capabilities and Cloud Deployment readiness.**
 
-## Features
+## 🚀 Key Features (Updated)
 
--   **Authentication**: Secure JWT-based Signup and Login.
--   **Task Management**: Create, Read, Update, Delete (CRUD) tasks.
--   **Status Tracking**: Mark tasks as Pending, In Progress, or Completed.
--   **Dashboard**: Visual progress bar and status filtering.
--   **Real-time Notifications**: Instant alerts for task updates using Socket.io.
--   **UI/UX**: Modern, responsive design using Tailwind CSS.
+-   **Real-time Notifications**: Instant red-dot alerts and dropdown notifications when tasks are created or updated (Powered by Socket.io).
+-   **Robust Authentication**:
+    -   Secure JWT Login/Signup.
+    -   **New**: Red Error Boxes for failed logins/network errors.
+    -   **New**: "Signing in..." loading states to improve UX.
+    -   **New**: Mobile-responsive Auth cards.
+-   **Responsive Design**:
+    -   Fully optimized for Mobile devices (375px+).
+    -   **New**: Sidebar Overlay on mobile for native-app feel.
+-   **Dashboard**: Visual progress bar, stats, and task filtering.
+-   **Deployment Ready**:
+    -   Configured for **Render** (Backend) & **Vercel** (Frontend).
+    -   Environment variable support (`VITE_API_URL`) for seamless cloud connection.
 
-## Project Structure
+## 📂 Project Structure
 
 ```
-/client     # React Frontend (Vite + Tailwind)
-/server     # Node.js + Express Backend
+/client     # React Frontend (Vite + Tailwind) - Authenticated, Responsive
+/server     # Node.js + Express Backend - Socket.io enabled
 ```
 
-## Setup Instructions
+## 🛠️ Quick Start (Local)
 
-### Prerequisites
-
--   Node.js installed (v14+ recommended).
--   MongoDB installed and running locally.
-
-### 1. Backend Setup
-
-1.  Navigate to the server directory:
+1.  **Backend**:
     ```bash
     cd server
-    ```
-2.  Install dependencies:
-    ```bash
     npm install
-    ```
-3.  Create a `.env` file in `server/` with the following:
-    ```env
-    PORT=5000
-    MONGO_URI=mongodb://localhost:27017/todo-app
-    JWT_SECRET=your_super_secret_key_here
-    ```
-4.  Start the server:
-    ```bash
     npm run dev
+    # Runs on http://localhost:5000
     ```
-
-### 2. Frontend Setup
-
-1.  Open a new terminal and navigate to the client directory:
+2.  **Frontend**:
     ```bash
     cd client
-    ```
-2.  Install dependencies:
-    ```bash
     npm install
-    ```
-3.  (Optional) Create a `.env` file in `client/` if connecting to a remote backend:
-    ```env
-    VITE_API_URL=http://localhost:5000/api
-    ```
-4.  Start the development server:
-    ```bash
     npm run dev
+    # Runs on http://localhost:5173
     ```
 
-### 3. Usage
+## ☁️ Deployment Guide
 
--   Open your browser at `http://localhost:5173`.
--   Sign up for a new account.
--   Start managing your tasks!
+I have included a detailed **[DEPLOYMENT.md](./DEPLOYMENT.md)** file in this repository. It covers:
+1.  **GitHub**: Determining what to upload (handling `.gitignore`).
+2.  **Render**: Hosting the Node.js/Socket.io backend.
+    -   *Crucial*: Set `0.0.0.0/0` in MongoDB Network Access.
+3.  **Vercel**: Hosting the React Frontend.
+    -   *Crucial*: Set `VITE_API_URL` to your Render Link `.../api`.
 
-## Deployment
+## 🔄 Recent Changelog
 
-For a detailed, step-by-step guide on how to deploy this application to **GitHub** (code), **Vercel** (frontend), and **Render** (backend), please read the [DEPLOYMENT.md](./DEPLOYMENT.md) file included in this repository.
+-   **Fixed**: "Signup Failed" logic. Now properly handles network errors vs duplicate users.
+-   **Fixed**: `api.js` now dynamically switches between `localhost` and `VITE_API_URL` for production.
+-   **Added**: Mobile Sidebar Overlay and improved CSS media queries.
+-   **Added**: Landing Page at root `/` with "Go to Dashboard" logic.
+
+## 👤 Author
+
+Ayush Kumar
