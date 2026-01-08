@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { SocketProvider } from './context/SocketContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { SettingsProvider } from './context/SettingsContext';
 import Login from './pages/Login';
@@ -55,6 +56,10 @@ const AppContent = () => {
     const location = useLocation();
     // Hide footer on all dashboard-related pages
     const isDashboard = ['/dashboard', '/ai-assistant', '/analytics', '/vital', '/categories', '/settings', '/about'].some(path => location.pathname.startsWith(path));
+
+    const { user, loading } = useAuth();
+
+    if (loading) return <div className="loading-screen">Loading...</div>;
 
     return (
         <div className="app-layout">
@@ -118,6 +123,7 @@ const AppContent = () => {
                         </PrivateRoute>
                     }
                 />
+                <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
             {!isDashboard && <Footer />}
         </div>
@@ -128,13 +134,15 @@ function App() {
     return (
         <Router>
             <AuthProvider>
-                <SettingsProvider>
-                    <ThemeProvider>
-                        <ErrorBoundary>
-                            <AppContent />
-                        </ErrorBoundary>
-                    </ThemeProvider>
-                </SettingsProvider>
+                <SocketProvider>
+                    <SettingsProvider>
+                        <ThemeProvider>
+                            <ErrorBoundary>
+                                <AppContent />
+                            </ErrorBoundary>
+                        </ThemeProvider>
+                    </SettingsProvider>
+                </SocketProvider>
             </AuthProvider>
         </Router>
     );

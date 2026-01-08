@@ -34,6 +34,14 @@ router.post('/', protect, async (req, res) => {
             user: req.user.id,
         });
 
+        // Emit notification
+        const io = req.app.get('socketio');
+        io.to(req.user.id).emit('notification', {
+            type: 'TASK_CREATED',
+            message: `Task "${todo.title}" created`,
+            todo
+        });
+
         res.status(200).json(todo);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -63,6 +71,14 @@ router.put('/:id', protect, async (req, res) => {
 
         const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
+        });
+
+        // Emit notification
+        const io = req.app.get('socketio');
+        io.to(req.user.id).emit('notification', {
+            type: 'TASK_UPDATED',
+            message: `Task "${updatedTodo.title}" updated`,
+            todo: updatedTodo
         });
 
         res.status(200).json(updatedTodo);

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { FaSearch, FaBell, FaCalendarAlt, FaBars, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useSidebar } from './DashboardLayout';
+import { useSocket } from '../context/SocketContext';
 import api from '../utils/api';
 
 const TopHeader = ({ onSearch }) => {
     const { toggleSidebar } = useSidebar() || {};
+    const { socket } = useSocket();
     const [showNotifications, setShowNotifications] = useState(false);
     const [notifications, setNotifications] = useState({ scheduled: [], completed: [] });
     const [loading, setLoading] = useState(false);
@@ -42,6 +44,19 @@ const TopHeader = ({ onSearch }) => {
             fetchNotifications();
         }
     }, [showNotifications]);
+
+    // Real-time notifications listener
+    useEffect(() => {
+        if (!socket) return;
+
+        socket.on('notification', () => {
+            // Re-fetch notifications when a new one comes in
+            fetchNotifications();
+            // You could also show a toast here
+        });
+
+        return () => socket.off('notification');
+    }, [socket]);
 
     useEffect(() => {
         if (showCalendar) {

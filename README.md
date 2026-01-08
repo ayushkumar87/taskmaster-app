@@ -8,6 +8,7 @@ A fully functional, production-ready Todo application built with the MERN stack 
 -   **Task Management**: Create, Read, Update, Delete (CRUD) tasks.
 -   **Status Tracking**: Mark tasks as Pending, In Progress, or Completed.
 -   **Dashboard**: Visual progress bar and status filtering.
+-   **Real-time Notifications**: Instant alerts for task updates using Socket.io.
 -   **UI/UX**: Modern, responsive design using Tailwind CSS.
 
 ## Project Structure
@@ -21,8 +22,8 @@ A fully functional, production-ready Todo application built with the MERN stack 
 
 ### Prerequisites
 
--   Node.js installed.
--   MongoDB installed and running locally (or have a connection string).
+-   Node.js installed (v14+ recommended).
+-   MongoDB installed and running locally.
 
 ### 1. Backend Setup
 
@@ -34,11 +35,11 @@ A fully functional, production-ready Todo application built with the MERN stack 
     ```bash
     npm install
     ```
-3.  Create a `.env` file in the `server` directory (already created):
+3.  Create a `.env` file in `server/` with the following:
     ```env
     PORT=5000
     MONGO_URI=mongodb://localhost:27017/todo-app
-    JWT_SECRET=your_jwt_secret
+    JWT_SECRET=your_super_secret_key_here
     ```
 4.  Start the server:
     ```bash
@@ -47,7 +48,7 @@ A fully functional, production-ready Todo application built with the MERN stack 
 
 ### 2. Frontend Setup
 
-1.  Navigate to the client directory:
+1.  Open a new terminal and navigate to the client directory:
     ```bash
     cd client
     ```
@@ -55,42 +56,21 @@ A fully functional, production-ready Todo application built with the MERN stack 
     ```bash
     npm install
     ```
-3.  Start the development server:
+3.  (Optional) Create a `.env` file in `client/` if connecting to a remote backend:
+    ```env
+    VITE_API_URL=http://localhost:5000/api
+    ```
+4.  Start the development server:
     ```bash
     npm run dev
     ```
 
 ### 3. Usage
 
--   Open your browser at `http://localhost:5173` (Vite default).
+-   Open your browser at `http://localhost:5173`.
 -   Sign up for a new account.
 -   Start managing your tasks!
 
 ## Deployment
 
-### GitHub (Code Hosting)
-
-1.  Create a new repository on GitHub (e.g., `taskmaster-app`).
-2.  Push your code:
-    ```bash
-    git remote add origin https://github.com/YOUR_USERNAME/taskmaster-app.git
-    git branch -M main
-    git push -u origin main
-    ```
-
-### Frontend Deployment (Vercel/Netlify)
-
-1.  Push your code to GitHub.
-2.  Import the repository into **Vercel** or **Netlify**.
-3.  Set the **Root Directory** to `client` (or keep default if configuring manually).
-4.  Build command: `npm run build`.
-5.  Output directory: `dist`.
-
-### Backend Deployment (Render/Railway/Heroku)
-
-1.  Push your code to GitHub.
-2.  Import the repository into your hosting provider.
-3.  Set the **Root Directory** to `server`.
-4.  Build command: `npm install`.
-5.  Start command: `npm start` (or `node server.js`).
-6.  **Important:** Add your Environment Variables (`MONGO_URI`, `JWT_SECRET`) in the hosting dashboard.
+For a detailed, step-by-step guide on how to deploy this application to **GitHub** (code), **Vercel** (frontend), and **Render** (backend), please read the [DEPLOYMENT.md](./DEPLOYMENT.md) file included in this repository.
