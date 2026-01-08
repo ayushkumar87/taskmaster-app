@@ -20,7 +20,7 @@ const Signup = () => {
             navigate('/');
         } catch (err) {
             console.error("Signup Error:", err);
-            const msg = err.response?.data?.message || 'Signup failed. Please try again.';
+            const msg = err.response?.data?.message || 'Signup failed. Server unreachable or network error.';
             setError(msg);
         } finally {
             setLoading(false);

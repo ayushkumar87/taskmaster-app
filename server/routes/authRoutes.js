@@ -16,6 +16,7 @@ const generateToken = (id) => {
 // @route   POST /api/auth/signup
 // @access  Public
 router.post('/signup', async (req, res) => {
+    console.log('Signup Request Body:', req.body);
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
