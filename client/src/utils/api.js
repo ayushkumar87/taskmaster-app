@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.DEV
-    ? 'http://127.0.0.1:5000/api'
-    : (import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000/api');
+// Prioritize environment variable (for Vercel), fallback to 127.0.0.1 (for local Windows dev)
+const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000/api';
 
-console.log("Using API_URL:", API_URL); // Debugging: Log the API URL being used
+console.log("Using API_URL:", API_URL);
 
 const api = axios.create({
     baseURL: API_URL,
