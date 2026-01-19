@@ -2,6 +2,7 @@
 
 A fully functional, production-ready Todo application built with the MERN stack (MongoDB, Express, React, Node.js).
 **Recently updated with Real-time capabilities and Cloud Deployment readiness.**
+Take a look:-https://lnkd.in/gmtsQhug
 
 ## 🚀 Key Features (Updated)
 
