@@ -34,11 +34,13 @@ router.post('/signup', async (req, res) => {
 
     // Create user
     try {
+        console.time('Signup Process'); // Start timer
         const user = await User.create({
             name,
             email,
             password,
         });
+        console.timeEnd('Signup Process'); // End timer
 
         if (user) {
             res.status(201).json({
