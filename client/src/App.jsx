@@ -6,6 +6,8 @@ import { ThemeProvider } from './context/ThemeContext';
 import { SettingsProvider } from './context/SettingsContext';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import Dashboard from './pages/Dashboard';
 import Landing from './pages/Landing';
 import Analytics from './pages/Analytics';
@@ -67,6 +69,8 @@ const AppContent = () => {
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
                 <Route
                     path="/dashboard"
                     element={
