@@ -19,7 +19,8 @@ const Login = () => {
             navigate('/');
         } catch (err) {
             console.error("Login Error:", err);
-            const msg = err.response?.data?.message || 'Login failed. Please check your connection.';
+            // Show more detailed error for debugging
+            const msg = err.response?.data?.message || err.message || 'Login failed. Please check your connection.';
             setError(msg);
         } finally {
             setLoading(false);
