@@ -13,13 +13,13 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "*", // Allow any origin for debugging
+        origin: "http://localhost:5173",
         methods: ["GET", "POST"]
     }
 });
 
 app.use(express.json());
-app.use(cors({ origin: '*' })); // Allow all origins for Express routes as well
+app.use(cors());
 
 io.on('connection', (socket) => {
     console.log(`User Connected: ${socket.id}`);
